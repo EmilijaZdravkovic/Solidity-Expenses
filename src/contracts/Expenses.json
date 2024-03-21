@@ -37,7 +37,7 @@
                     "type": "uint256"
                 }
             ],
-            "name": "deleteExpense",
+            "name": "cancelExpense",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -76,6 +76,11 @@
                     "internalType": "string",
                     "name": "description",
                     "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "canceled",
+                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",
@@ -111,6 +116,11 @@
                             "internalType": "string",
                             "name": "description",
                             "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "canceled",
+                            "type": "uint256"
                         }
                     ],
                     "internalType": "struct ExpenseTracker.Expense[]",
@@ -157,24 +167,16 @@
                             "internalType": "string",
                             "name": "description",
                             "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "canceled",
+                            "type": "uint256"
                         }
                     ],
                     "internalType": "struct ExpenseTracker.Expense",
                     "name": "",
                     "type": "tuple"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "getNextId",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",
@@ -191,39 +193,6 @@
                 }
             ],
             "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_id",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_amount",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_date",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_category",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_description",
-                    "type": "string"
-                }
-            ],
-            "name": "updateExpense",
-            "outputs": [],
-            "stateMutability": "nonpayable",
             "type": "function"
         }
     ]

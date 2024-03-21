@@ -3,7 +3,7 @@ import ExpenseList from '../ExpenseList/ExpenseList.js';
 import CreateExpenseModal from '../CreateExpenseModal/CreateExpenseModal.js'; 
 import Web3 from 'web3';
 import './Main.css';
-const expensesAddress = "0x011A23ce999Fe94841f15f71e9F249Af4c769fb3";
+const expensesAddress = "0xb6ccC5629e7060d268234a763d04A4F64f5Cd572";
 const sepoliaRPCUrl = "https://sepolia.infura.io/v3/c15405c891f649b7be2fd974e73c3a3d";
 
 const Main = () => {
@@ -46,7 +46,6 @@ const Main = () => {
         </button>
       )}
       <h1>My expenses</h1>
-      
       <ExpenseList className="auction-list" web3={web3} account={account} expensesAddress={expensesAddress}/>
       <button className="create-auction-button" onClick={() => setShowCreateModal(true)}>
         Add expense
