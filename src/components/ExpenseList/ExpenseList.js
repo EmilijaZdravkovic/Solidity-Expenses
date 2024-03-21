@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ExpensesABI from '../../contracts/Expenses.json';
+import TotalsModal from "../TotalsModal/TotalsModal.js"; // Modal
 import { AiOutlineDelete} from "react-icons/ai";
 import './ExpenseList.css'
 
 const ExpenseList = ({ web3, account, expensesAddress }) => {
   const [expenses, setExpenses] = useState([]); 
   const [sortAscending, setSortAscending] = useState(true);
+  const [showTotalsModal, setShowTotalsModal] = useState(false); // Kontrolisem modal
 
   const loadExpenses = async () => {
     try {
@@ -64,6 +66,7 @@ const ExpenseList = ({ web3, account, expensesAddress }) => {
 
   return (
     <div className='expenses-list'>
+      <button className="expense-analysis-button" onClick={() => setShowTotalsModal(true)}>Expense Analysis</button> 
       <button className="sort-button" onClick={() => setSortAscending(!sortAscending)}>Sort by Price</button> 
       <div className='expenses-list-item'>
         <p>Amount</p>
@@ -73,6 +76,9 @@ const ExpenseList = ({ web3, account, expensesAddress }) => {
         <p>Status</p>
         <p>EDIT</p>
       </div>
+      {showTotalsModal && ( // modal se prikazuje samo kad je kliknuto dugme
+        <TotalsModal web3={web3} account={account} onClose={() => setShowTotalsModal(false)} expensesAddress={expensesAddress}/>
+      )}
       {sortedExpenses.map((expense, index) => (
         <div className='expenses-list-item' key={index}>
           <p>{expense.amount.toString()}</p>

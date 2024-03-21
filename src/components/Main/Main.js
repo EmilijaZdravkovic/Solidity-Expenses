@@ -3,7 +3,7 @@ import ExpenseList from '../ExpenseList/ExpenseList.js';
 import CreateExpenseModal from '../CreateExpenseModal/CreateExpenseModal.js'; 
 import Web3 from 'web3';
 import './Main.css';
-const expensesAddress = "0xb6ccC5629e7060d268234a763d04A4F64f5Cd572";
+const expensesAddress = "0xd565bD1Dc591b76dC8Ae51A0704fAF02eAc37D62";
 const sepoliaRPCUrl = "https://sepolia.infura.io/v3/c15405c891f649b7be2fd974e73c3a3d";
 
 const Main = () => {
