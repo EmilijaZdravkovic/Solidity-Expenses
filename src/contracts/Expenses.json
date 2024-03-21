@@ -129,69 +129,39 @@
                     "type": "uint256"
                 }
             ],
-            "name": "getAmount",
+            "name": "getExpense",
             "outputs": [
                 {
-                    "internalType": "uint256",
+                    "components": [
+                        {
+                            "internalType": "uint256",
+                            "name": "id",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "date",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "category",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "description",
+                            "type": "string"
+                        }
+                    ],
+                    "internalType": "struct ExpenseTracker.Expense",
                     "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_id",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getCategory",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_id",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getDate",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_id",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getDescription",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
+                    "type": "tuple"
                 }
             ],
             "stateMutability": "view",

@@ -45,6 +45,7 @@ const Main = () => {
           Connect with MetaMask
         </button>
       )}
+      <h1>My expenses</h1>
       
       <ExpenseList className="auction-list" web3={web3} account={account} expensesAddress={expensesAddress}/>
       <button className="create-auction-button" onClick={() => setShowCreateModal(true)}>

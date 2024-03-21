@@ -71,6 +71,7 @@ body {
 
 h1{
     text-align: center;
+    color: black;
 }
 .expenses-wrapper{
     background:rgb(47, 47, 47);
