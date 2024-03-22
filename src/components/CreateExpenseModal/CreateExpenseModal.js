@@ -36,10 +36,9 @@ const CreateExpenseModal = ({ onClose, web3, account, expensesAddress}) => {
           expenseData.date,
           expenseData.category,
           expenseData.description
-        ).encodeABI() // call to contract method
+        ).encodeABI()
       };
 
-      // txHash is a hex string
       const txHash = await window.ethereum.request({
         method: 'eth_sendTransaction',
         params: [transactionParameters],
@@ -54,6 +53,7 @@ const CreateExpenseModal = ({ onClose, web3, account, expensesAddress}) => {
   
   return (
     <div className="expenses-wrapper">
+      <h2>Add expense</h2>
       <div className="expenses-input">
         <div className='expenses-input-item'>
           <label>Amount</label>
@@ -98,7 +98,7 @@ const CreateExpenseModal = ({ onClose, web3, account, expensesAddress}) => {
           />
         </div>
         <div className='expenses-input-item'>
-          <button type="button" onClick={handleSubmit} className='primaryBtn'>Add</button>
+          <button type="button" onClick={handleSubmit} > Add </button>
           <button className="modal-button cancel-button" onClick={onClose}>Cancel</button>
         </div>
       </div>

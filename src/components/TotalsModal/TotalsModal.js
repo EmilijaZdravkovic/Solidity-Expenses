@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import expensesABI from '../../contracts/Expenses.json';
 import './TotalsModal.css';
 
-const TotalsModal = ({ web3, account, onClose, expensesAddress }) => {
+const TotalsModal = ({ web3, onClose, expensesAddress }) => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [totalExpense, setTotalExpense] = useState(0);
   
@@ -20,22 +20,20 @@ const TotalsModal = ({ web3, account, onClose, expensesAddress }) => {
   
     return (
       <div className="expense-analysis-modal">
-        <h2 className="modal-title">Expense Analysis</h2>
-        <select className="category-select" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-          <option value="">Choose category</option>
+        <h2>TOTALS BY CATEGORY</h2>
+        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+          <option value="">Category:</option>
           <option value="Food">Food</option>
           <option value="Car">Car</option>
           <option value="Home">Home</option>
           <option value="Fun">Fun</option>
         </select>
-        <button className="get-total-button" onClick={handleGetTotalExpense}>Get Total Expense</button>
+        <button onClick={handleGetTotalExpense}>Get Total Expense</button>
         
-        {Number(totalExpense) > 0 ? (
-          <p className="total-expense-info">Total expense for {selectedCategory} is {Number(totalExpense)} RSD</p>
-        ) : (
-          <p className="total-expense-info">Total expense for {selectedCategory} is 0 RSD</p>
-        )}
-        <button className="close-button" onClick={onClose}>Close</button>
+
+          <p>TOTAL: {Number(totalExpense)} RSD</p>
+
+        <button  onClick={onClose}>Close</button>
       </div>
     );
   };

@@ -36,4 +36,15 @@ contract ExpenseTracker {
         Expense memory expense = expenses[_id];
         return expense;
     }
+
+function getTotalExpensePerCategory(string memory _category) external view returns (uint256) {
+    uint256 totalExpense = 0;
+    for (uint256 i = 0; i < nextId; i++) {
+        if (keccak256(bytes(expenses[i].category)) == keccak256(bytes(_category)) && expenses[i].canceled==1) {
+            totalExpense += expenses[i].amount;
+        }
+    }
+    return totalExpense;
+}
+
 }

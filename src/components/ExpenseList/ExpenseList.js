@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ExpensesABI from '../../contracts/Expenses.json';
-import TotalsModal from "../TotalsModal/TotalsModal.js"; // Modal
+import TotalsModal from "../TotalsModal/TotalsModal.js"; 
 import { AiOutlineDelete} from "react-icons/ai";
 import './ExpenseList.css'
 
 const ExpenseList = ({ web3, account, expensesAddress }) => {
   const [expenses, setExpenses] = useState([]); 
   const [sortAscending, setSortAscending] = useState(true);
-  const [showTotalsModal, setShowTotalsModal] = useState(false); // Kontrolisem modal
+  const [showTotalsModal, setShowTotalsModal] = useState(false); 
 
   const loadExpenses = async () => {
     try {
@@ -69,19 +69,19 @@ const ExpenseList = ({ web3, account, expensesAddress }) => {
       <button className="expense-analysis-button" onClick={() => setShowTotalsModal(true)}>Expense Analysis</button> 
       <button className="sort-button" onClick={() => setSortAscending(!sortAscending)}>Sort by Price</button> 
       <div className='expenses-list-item'>
-        <p>Amount</p>
-        <p>Date of expense</p>
-        <p>Category</p>
-        <p>Description</p>
-        <p>Status</p>
-        <p>EDIT</p>
+        <p><b>Amount</b></p>
+        <p><b>Date of expense</b></p>
+        <p><b>Category</b></p>
+        <p><b>Description</b></p>
+        <p><b>Status</b></p>
+        <p><b>Cancel</b></p>
       </div>
-      {showTotalsModal && ( // modal se prikazuje samo kad je kliknuto dugme
-        <TotalsModal web3={web3} account={account} onClose={() => setShowTotalsModal(false)} expensesAddress={expensesAddress}/>
+      {showTotalsModal && (
+        <TotalsModal web3={web3} onClose={() => setShowTotalsModal(false)} expensesAddress={expensesAddress}/>
       )}
       {sortedExpenses.map((expense, index) => (
         <div className='expenses-list-item' key={index}>
-          <p>{expense.amount.toString()}</p>
+          <p>{expense.amount.toString() + ' RSD'}</p>
           <p>{expense.date}</p>
           <p>{expense.category}</p>
           <p>{expense.description}</p>
