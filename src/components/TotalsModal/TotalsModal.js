@@ -1,42 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import expensesABI from '../../contracts/Expenses.json';
 import './TotalsModal.css';
 
 const TotalsModal = ({ web3, onClose, expensesAddress }) => {
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [totalExpense, setTotalExpense] = useState(0);
+
+    const [totals, setTotals] = useState({
+      Food: 0,
+      Car: 0,
+      Home: 0,
+      Fun: 0
+    });
   
-    const handleGetTotalExpense = async () => {
-      try {
-        const expenseAnalyzer = new web3.eth.Contract(expensesABI.abi, expensesAddress);
-        console.log(selectedCategory);
-        const total = await expenseAnalyzer.methods.getTotalExpensePerCategory(selectedCategory).call();
-        setTotalExpense(total);
-        
-      } catch (error) {
-        console.error("Error getting total expense:", error);
-      }
-    };
+    useEffect(() => {
+      const handleGetAllTotals = async () => {
+        try {
+          const expenseAnalyzer = new web3.eth.Contract(expensesABI.abi, expensesAddress);
+          const foodTotal = await expenseAnalyzer.methods.getTotalExpensePerCategory('Food').call();
+          const carTotal = await expenseAnalyzer.methods.getTotalExpensePerCategory('Car').call();
+          const homeTotal = await expenseAnalyzer.methods.getTotalExpensePerCategory('Home').call();
+          const funTotal = await expenseAnalyzer.methods.getTotalExpensePerCategory('Fun').call();
+          setTotals({
+            Food: foodTotal,
+            Car: carTotal,
+            Home: homeTotal,
+            Fun: funTotal
+          });
+        } catch (error) {
+          console.error("Error getting total expenses:", error);
+        }
+      };
+      
+      handleGetAllTotals();
+    }, [web3, expensesAddress]);
   
     return (
       <div className="expense-analysis-modal">
         <h2>TOTALS BY CATEGORY</h2>
-        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-          <option value="">Category:</option>
-          <option value="Food">Food</option>
-          <option value="Car">Car</option>
-          <option value="Home">Home</option>
-          <option value="Fun">Fun</option>
-        </select>
-        <button onClick={handleGetTotalExpense}>Get Total Expense</button>
-        
-
-          <p>TOTAL: {Number(totalExpense)} RSD</p>
-
-        <button  onClick={onClose}>Close</button>
+        <div>
+          <p>Food: {Number(totals.Food)} RSD</p>
+          <p>Home: {Number(totals.Home)} RSD</p>
+          <p>Car: {Number(totals.Car)} RSD</p>
+          <p>Fun: {Number(totals.Fun)} RSD</p>
+        </div>
+        <button onClick={onClose}>Close</button>
       </div>
     );
-  };
-  
-  export default TotalsModal;
-  
+};
+
+export default TotalsModal;
